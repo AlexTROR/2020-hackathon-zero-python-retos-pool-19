@@ -4,9 +4,9 @@ import time
 import random
 from pygame.locals import *
 
-# pygame.init()
-# play_surface = pygame.display.set_mode((500, 500))
-# fps = pygame.time.Clock()
+#pygame.init()
+#play_surface = pygame.display.set_mode((500, 500))
+#fps = pygame.time.Clock()
 
 
 class Snake():
@@ -17,21 +17,32 @@ class Snake():
 
     # Manejo del pressed [KEYDOWN] de las teclas [K_RIGHT - K_LEFT - K_UP -K_DOWN ]
     def controller(self, event, pygame):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
-                    self.change = "UP"
-                if event.key == pygame.K_DOWN:
-                    self.change = "DOWN"
-                if event.key == pygame.K_LEFT:
-                    self.change = "LEFT"
-                if event.key == pygame.K_RIGHT:
-                    self.change = "RIGHT"
-        self.changeDirection()
-		        
+         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RIGHT:
+                self.change = "RIGHT"
+            if event.key == pygame.K_LEFT:
+                self.change = "LEFT"
+            if event.key == pygame.K_UP:
+                self.change = "UP"
+            if event.key == pygame.K_DOWN:
+                self.change = "DOWN"
+
+
+        #  for event in pygame.event.get():
+        #     if event.type == pygame.QUIT:
+        #         pygame.quit()
+        #         sys.exit()
+        #     if event.type == pygame.KEYDOWN:
+        #         if event.key == pygame.K_UP:
+        #             self.change = "UP"
+        #         if event.key == pygame.K_DOWN:
+        #             self.change = "DOWN"
+        #         if event.key == pygame.K_LEFT:
+        #             self.change = "LEFT"
+        #         if event.key == pygame.K_RIGHT:
+        #             self.change = "RIGHT"
+        # self.changeDirection() 
+		     
 
 
     # Controla el cambio de  las direcciones
@@ -40,30 +51,49 @@ class Snake():
     # Horizontal    -> Movimientos [UP - DOWN]
     # Incremento del movimiento 
     def changeDirection(self):
-        self.direction = self.change
-
-        if self.change == "RIGHT":   
-            self.position[0] = (self.position[0] + 10)
-            for i in range(0, len(self.body)):
-                self.body[i][0] == self.body[i][0] + 10
-
-        if self.change == "DOWN":
-            self.position[1] == (self.position[1] + 10)
-            for i in range(0, len(self.body)):
-               self.body[i][1] == self.body[i][1] + 10
+        if self.change == "RIGHT" and self.direction != "LEFT":
+            self.direction = "RIGHT"
+        if self.change == "LEFT" and self.direction != "RIGHT":
+            self.direction = "LEFT"
+        if self.change == "UP" and self.direction != "DOWN":
+            self.direction = "UP"
+        if self.change == "DOWN" and self.direction != "UP":
+            self.direction = "DOWN"
+        if self.direction == "RIGHT":
+            self.position[0] += 10
+        if self.direction == "LEFT":
+            self.position[0] -= 10
+        if self.direction == "UP":
+            self.position[1] -= 10
+        if self.direction == "DOWN":
+            self.position[1] += 10
+        self.body.insert(0, list(self.position))
         
-        if self.change == "UP":
-            self.position[1] == (self.position[1] - 10)
-            for i in range(0, len(self.body)):
-               self.body[i][1] == self.body[i][1] - 10
+        #  self.direction = self.change
 
-        if self.change == "LEFT":
-            self.position[0] == (self.position[0] - 10)
-            for i in range(0, len(self.body)):
-               self.body[i][0] == self.body[i][0] - 10
+        # if self.change == "RIGHT":   
+        #     self.position[0] = (self.position[0] + 10)
+        #     for i in range(0, len(self.body)):
+        #         self.body[i][0] == self.body[i][0] + 10
+
+        # if self.change == "DOWN":
+        #     self.position[1] == (self.position[1] + 10)
+        #     for i in range(0, len(self.body)):
+        #        self.body[i][1] == self.body[i][1] + 10
+        
+        # if self.change == "UP":
+        #     self.position[1] == (self.position[1] - 10)
+        #     for i in range(0, len(self.body)):
+        #        self.body[i][1] == self.body[i][1] - 10
+
+        # if self.change == "LEFT":
+        #     self.position[0] == (self.position[0] - 10)
+        #     for i in range(0, len(self.body)):
+        #        self.body[i][0] == self.body[i][0] - 10
             
 
-        self.body.insert(0, list(self.position))
+        # self.body.insert(0, list(self.position)) 
+
 
 class Game():
     run = True
