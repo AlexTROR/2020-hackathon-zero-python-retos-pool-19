@@ -1,13 +1,17 @@
-import pygame, sys, time, random
+import pygame
+import sys
+import time
+import random
 from pygame.locals import *
 
-#pygame.init()
-#play_surface = pygame.display.set_mode((500, 500))
-#fps = pygame.time.Clock()
+# pygame.init()
+# play_surface = pygame.display.set_mode((500, 500))
+# fps = pygame.time.Clock()
+
 
 class Snake():
-    position = [100,50]
-    body = [[100,50], [90,50],[80,50]]
+    position = [100, 50]
+    body = [[100, 50], [90, 50], [80, 50]]
     direction = "RIGHT"
     change = direction
 
@@ -15,8 +19,8 @@ class Snake():
     def controller(self, event, pygame):
 	    for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
+            pygame.quit()
+            sys.exit()
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     self.change = "UP"
@@ -25,7 +29,7 @@ class Snake():
                 if event.key == pygame.K_LEFT:
                     self.change = "LEFT"
                 elif event.key == pygame.K_RIGHT:
-                    self.change = "RIGHT"          
+                    self.change = "RIGHT"
          self.changeDirection()
 		        
 
