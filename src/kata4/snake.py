@@ -17,20 +17,20 @@ class Snake():
 
     # Manejo del pressed [KEYDOWN] de las teclas [K_RIGHT - K_LEFT - K_UP -K_DOWN ]
     def controller(self, event, pygame):
-	    for event in pygame.event.get():
+        for event in pygame.event.get():
             if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-            elif event.type == pygame.KEYDOWN:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP:
                     self.change = "UP"
-                elif event.key == pygame.K_DOWN:
+                if event.key == pygame.K_DOWN:
                     self.change = "DOWN"
                 if event.key == pygame.K_LEFT:
                     self.change = "LEFT"
-                elif event.key == pygame.K_RIGHT:
+                if event.key == pygame.K_RIGHT:
                     self.change = "RIGHT"
-         self.changeDirection()
+        self.changeDirection()
 		        
 
 
@@ -43,24 +43,25 @@ class Snake():
         self.direction = self.change
 
         if self.change == "RIGHT":   
-           for i + 1 in self.body
-               self.body[i][0] == self.body[i][0] + 10
             self.position[0] = (self.position[0] + 10)
+            for i in range(0, len(self.body)):
+                self.body[i][0] == self.body[i][0] + 10
 
-        elif self.change == "DOWN":
-            for i + 1 in self.body
-               self.body[i][1] == self.body[i][1] + 10
+        if self.change == "DOWN":
             self.position[1] == (self.position[1] + 10)
+            for i in range(0, len(self.body)):
+               self.body[i][1] == self.body[i][1] + 10
         
-        elif self.change == "UP":
-            for i + 1 in self.body
-               self.body[i][1] == self.body[i][1] - 10
+        if self.change == "UP":
             self.position[1] == (self.position[1] - 10)
+            for i in range(0, len(self.body)):
+               self.body[i][1] == self.body[i][1] - 10
 
-        elif self.change == "LEFT":
-            for i + 1 in self.body
-               self.body[i][0] == self.body[i][0] - 10
+        if self.change == "LEFT":
             self.position[0] == (self.position[0] - 10)
+            for i in range(0, len(self.body)):
+               self.body[i][0] == self.body[i][0] - 10
+            
 
         self.body.insert(0, list(self.position))
 
@@ -75,8 +76,8 @@ class Game():
     # función de salida
     def exit(self, event, pygame):
         pygame.quit()
-		sys.exit()
-    
+        sys.exit()
+
     # Posición aleatorio entre el ranto [0,49] * 10  
     def food_spawn(self):
         self.food_pos = random.randint(0, 49) * 10
@@ -95,16 +96,16 @@ class Game():
     # Posición del snake choca con sigo mismo menos la cabeza   -> Muere 
     def dead(self, snake):
         if 500 <= snake.position[0] <= 0:
-           pygame.quit()
-		   sys.exit()
+            pygame.quit()
+            sys.exit()
         
         if 500 <= snake.position[1] <= 0:
-           pygame.quit()
-		   sys.exit()
+            pygame.quit()
+            sys.exit()
         
         if len(snake.body) != len(set(snake.body)):
             pygame.quit()
-		    sys.exit()
+            sys.exit()
         
         
             
