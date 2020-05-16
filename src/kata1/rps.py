@@ -8,15 +8,21 @@ options = ["Piedra", "Papel", "Tijeras"]
 #'Perdiste!'
 def quienGana(player, ai):
     
+    player = player.lower()
+    player = player.capitalize()
+
+    ai = ai.lower()
+    ai = ai.capitalize()
+
     # CASO USUARIO PIEDRA
-    if options[player] == options[0]:
+    if player == options[0]:
         
         # CASO AI PIEDRA
-        if options[ai] == options[0]:
+        if ai == options[0]:
             return 'Empate!'
 
         #CASO AI PAPEL
-        elif options[ai] == options[1]:
+        elif ai == options[1]:
             return 'Perdiste!'
 
         #CASO AI TIJERA
@@ -25,14 +31,14 @@ def quienGana(player, ai):
 
 
     # CASO USUARIO PAPEL
-    if options[player] == options[1]:
+    if player == options[1]:
         
         # CASO AI PIEDRA
-        if options[ai] == options[0]:
+        if ai == options[0]:
             return 'Ganaste!'
 
         #CASO AI PAPEL
-        elif options[ai] == options[1]:
+        elif ai == options[1]:
             return 'Empate!'
 
         #CASO AI TIJERA
@@ -41,14 +47,14 @@ def quienGana(player, ai):
     
 
     # CASO USUARIO TIJERA
-    if options[player] == options[2]:
+    if player == options[2]:
         
         # CASO AI PIEDRA
-        if options[ai] == options[0]:
+        if ai == options[0]:
             return 'Perdiste!'
 
         #CASO AI PAPEL
-        elif options[ai] == options[1]:
+        elif ai == options[1]:
             return 'Ganaste!'
 
         #CASO AI TIJERA
@@ -58,11 +64,7 @@ def quienGana(player, ai):
 
 # Entry Point
 def Game():
-
-    player = input('Introduce el número que quieras jugar (0.PIEDRA, 1.PAPEL, 2.TIJERA): ')
-
-    ai = random.randint(0, 3)
-    
+     
     winner = quienGana(player, ai)
 
     print(winner)
