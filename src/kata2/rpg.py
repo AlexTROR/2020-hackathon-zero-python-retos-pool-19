@@ -21,7 +21,7 @@ def RandomPasswordGenerator(passLen):
     return res
             
 
-length = input('Introduce longitud de la password: ')
-length = int(length)
-password = RandomPasswordGenerator(length)
-print(password)
+#length = input('Introduce longitud de la password: ')
+#length = int(length)
+#password = RandomPasswordGenerator(length)
+#print(password)
