@@ -105,20 +105,17 @@ class Game():
 
     # función de salida
     def exit(self, event, pygame):
-        pygame.quit()
-        sys.exit()
+        pass
 
     # Posición aleatorio entre el ranto [0,49] * 10  
     def food_spawn(self):
-        self.food_pos = random.randint(0, 49) * 10
+        self.food_pos = random.randint(0, 500)
 
     # Si colisionas con una fruta, sumas 1
     # Sino decrementas en 1 el body del snake
     def eat(self, snake):
         if snake.position == self.food_pos:
             score += 1
-        else:
-           snake.body.pop(len(snake.body) - 1)
 
     # Mensajes de salida cuando el snake muere
     # Posición snake[0] >= 500 ó snake[0] <= 0                  -> Muere
@@ -126,16 +123,13 @@ class Game():
     # Posición del snake choca con sigo mismo menos la cabeza   -> Muere 
     def dead(self, snake):
         if 500 <= snake.position[0] <= 0:
-            pygame.quit()
-            sys.exit()
+            self.run = False
         
         if 500 <= snake.position[1] <= 0:
-            pygame.quit()
-            sys.exit()
+           self.run = False
         
         if len(snake.body) != len(set(snake.body)):
-            pygame.quit()
-            sys.exit()
+            self.run = False
         
         
             
