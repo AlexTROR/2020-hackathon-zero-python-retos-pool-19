@@ -1,9 +1,9 @@
 import pygame, sys, time, random
 from pygame.locals import *
 
-pygame.init()
-play_surface = pygame.display.set_mode((500, 500))
-fps = pygame.time.Clock()
+#pygame.init()
+#play_surface = pygame.display.set_mode((500, 500))
+#fps = pygame.time.Clock()
 
 class Snake():
     position = [100,50]
@@ -13,30 +13,50 @@ class Snake():
 
     # Manejo del pressed [KEYDOWN] de las teclas [K_RIGHT - K_LEFT - K_UP -K_DOWN ]
     def controller(self, event, pygame):
-        
+	    for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_UP:
+                    self.change = "UP"
+                elif event.key == pygame.K_DOWN:
+                    self.change = "DOWN"
+                if event.key == pygame.K_LEFT:
+                    self.change = "LEFT"
+                elif event.key == pygame.K_RIGHT:
+                    self.change = "RIGHT"          
+         self.changeDirection()
+		        
+
+
     # Controla el cambio de  las direcciones
     # Orientaciones
     # Vertical      -> Movimientos [RIGHT - LEFT]
     # Horizontal    -> Movimientos [UP - DOWN]
     # Incremento del movimiento 
     def changeDirection(self):
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
+        self.direction = self.change
 
-        #
-        #
-        #
-        #
-        #
-        #
-        #
-        #
+        if self.change == "RIGHT":   
+           for i + 1 in self.body
+               self.body[i][0] == self.body[i][0] + 10
+            self.position[0] = (self.position[0] + 10)
+
+        elif self.change == "DOWN":
+            for i + 1 in self.body
+               self.body[i][1] == self.body[i][1] + 10
+            self.position[1] == (self.position[1] + 10)
+        
+        elif self.change == "UP":
+            for i + 1 in self.body
+               self.body[i][1] == self.body[i][1] - 10
+            self.position[1] == (self.position[1] - 10)
+
+        elif self.change == "LEFT":
+            for i + 1 in self.body
+               self.body[i][0] == self.body[i][0] - 10
+            self.position[0] == (self.position[0] - 10)
 
         self.body.insert(0, list(self.position))
 
@@ -50,47 +70,47 @@ class Game():
 
     # función de salida
     def exit(self, event, pygame):
-        #
-        #
+        pygame.quit()
+		sys.exit()
     
     # Posición aleatorio entre el ranto [0,49] * 10  
     def food_spawn(self):
-        self.food_pos = 0
+        self.food_pos = random.randint(0, 49) * 10
 
     # Si colisionas con una fruta, sumas 1
     # Sino decrementas en 1 el body del snake
     def eat(self, snake):
-        #
-        #    
-        #    
-        #
-        #  
+        if snake.position == self.food_pos:
+            score += 1
+        else:
+           snake.body.pop(len(snake.body) - 1)
 
     # Mensajes de salida cuando el snake muere
     # Posición snake[0] >= 500 ó snake[0] <= 0                  -> Muere
     # Posición snake[1] >= 500 ó snake[1] <= 0                  -> Muere
     # Posición del snake choca con sigo mismo menos la cabeza   -> Muere 
     def dead(self, snake):
-        #
-        #
-        #
+        if 500 <= snake.position[0] <= 0:
+           pygame.quit()
+		   sys.exit()
         
-        #
-        #
-        #
+        if 500 <= snake.position[1] <= 0:
+           pygame.quit()
+		   sys.exit()
         
-        #
-        #
-        #
+        if len(snake.body) != len(set(snake.body)):
+            pygame.quit()
+		    sys.exit()
+        
         
             
 # Entry Point
 def main():
     # Descomentar para lanzar el juego en local
     # Comentar para validar con el oráculo
-    # pygame.init()
-    # play_surface = pygame.display.set_mode((500, 500))
-    # fps = pygame.time.Clock()
+    pygame.init()
+    play_surface = pygame.display.set_mode((500, 500))
+    fps = pygame.time.Clock()
 
     snake = Snake()
     game = Game()
@@ -121,5 +141,5 @@ def main():
 # Comienza la aventura!!!!
 # Descomentar para lanzar el juego en local
 # Comentar para validar con el oráculo
-# main()
-# pygame.quit()
+main()
+pygame.quit()

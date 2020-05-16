@@ -14,20 +14,20 @@ def quienGana(player, ai):
     ai = ai.lower()
     ai = ai.capitalize()
 
+    if player == ai:
+        return 'Empate!'
+
     # CASO USUARIO PIEDRA
     if player == options[0]:
         
-        # CASO AI PIEDRA
-        if ai == options[0]:
-            return 'Empate!'
+        # CASO AI TIJERA
+        if ai == options[2]:
+            return 'Ganaste!'
 
         #CASO AI PAPEL
         elif ai == options[1]:
             return 'Perdiste!'
 
-        #CASO AI TIJERA
-        else:
-            return 'Ganaste!'
 
 
     # CASO USUARIO PAPEL
@@ -37,13 +37,10 @@ def quienGana(player, ai):
         if ai == options[0]:
             return 'Ganaste!'
 
-        #CASO AI PAPEL
-        elif ai == options[1]:
-            return 'Empate!'
-
         #CASO AI TIJERA
-        else:
+        elif ai == options[2]:
             return 'Perdiste!'
+
     
 
     # CASO USUARIO TIJERA
@@ -57,9 +54,6 @@ def quienGana(player, ai):
         elif ai == options[1]:
             return 'Ganaste!'
 
-        #CASO AI TIJERA
-        else:
-            return 'Empate!'
         
 
 # Entry Point
