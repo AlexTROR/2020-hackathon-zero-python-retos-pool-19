@@ -176,5 +176,5 @@ def main():
 # Comienza la aventura!!!!
 # Descomentar para lanzar el juego en local
 # Comentar para validar con el oráculo
-main()
-pygame.quit()
+#main()
+#pygame.quit()
