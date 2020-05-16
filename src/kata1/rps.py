@@ -65,12 +65,15 @@ def quienGana(player, ai):
 # Entry Point
 def Game():
     
-    ai = random.randint(0,2)
+    ai = randint(0,2)
     ai = options[ai]
 
     player = input("Introduzca que quiere jugar (piedra, papel, tijera): ")
+
+    print("La IA juega: " + ai)
 
     winner = quienGana(player, ai)
 
     print(winner)
 
+Game()
